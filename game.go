@@ -82,3 +82,16 @@ func (t *GameTree) Prev() bool {
 	t.Current = t.Current.Prev
 	return true
 }
+
+// n番目の局面に進む。
+// 0番目はRoot。
+func (t *GameTree) GotoNth(n int) {
+	current := t.Root
+	for i := 0; i < n; i++ {
+		if current.Next == nil {
+			break
+		}
+		current = current.Next
+	}
+	t.Current = current
+}
